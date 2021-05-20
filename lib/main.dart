@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,15 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _content;
 
-  // Find the Documents path
-  Future<String> _getDirPath() async {
-    final _dir = await getApplicationDocumentsDirectory();
-    return _dir.path;
-  }
-
-  // This function is triggered when the "Read" button is pressed
+  // This function is used to read HTML file as an output from process command
   Future<void> _readData() async {
-    final _dirPath = await _getDirPath();
     final _myFile = File('battery-report.html');
     final _data = await _myFile.readAsString(encoding: utf8);
     setState(() {
